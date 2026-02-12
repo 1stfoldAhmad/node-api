@@ -13,9 +13,16 @@ app.use(express.json());
 app.use('/api/transcript', transcriptRouter);
 app.use('/api/playlist', playlistRouter);
 
-// Health check endpoint
+// Default home page
 app.get('/', (req, res) => {
-  res.json({ message: 'YouTube API Server is running' });
+  res.json({
+    message: 'YouTube Transcription API',
+    docs: {
+      transcript: 'GET /api/transcript?videoId=VIDEO_ID',
+      playlist: 'GET /api/playlist?playlistId=PLAYLIST_ID',
+    },
+    status: 'running',
+  });
 });
 
 // Error handling middleware
